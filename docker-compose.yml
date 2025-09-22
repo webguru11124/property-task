@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: plyo_leads
+      POSTGRES_USER: plyo_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: plyo_user
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: plyo_leads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    command: npm run start:dev
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_BASE_URL: http://localhost:3000
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  postgres_data:
