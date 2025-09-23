@@ -1,7 +1,7 @@
+import { Text } from '@mantine/core';
 import React from 'react';
 import { PhoneInput as IntlPhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
-import { Text } from '@mantine/core';
 
 interface Props {
     value: string;
@@ -23,16 +23,7 @@ export const PhoneInput: React.FC<Props> = ({ value, onChange, error, label = 'P
                 defaultCountry="no"
                 value={value}
                 onChange={(phone) => onChange(phone)}
-                inputStyle={{
-                    width: '100%',
-                    height: '42px',
-                    fontSize: '14px',
-                    borderColor: error ? '#fa5252' : '#ced4da',
-                }}
-                containerStyle={{ width: '100%' }}
-                preferredCountries={["no", "se", "dk", "fi"]}
-                enableSearch={true}
-                searchPlaceholder="Search countries..."
+                style={{ width: '100%' }}
             />
             {error && (
                 <Text c="red" size="xs" mt={4}>

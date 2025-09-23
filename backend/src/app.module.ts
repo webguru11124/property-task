@@ -32,4 +32,4 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
   controllers: [AppController, HealthController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,6 @@
-import React from 'react';
 import { Button, Burger, Text, ThemeIcon } from '@mantine/core';
 import { IconHome, IconBuilding, IconPhone } from '@tabler/icons-react';
+import React from 'react';
 
 export const Header: React.FC = () => {
     const [opened, setOpened] = React.useState(false);

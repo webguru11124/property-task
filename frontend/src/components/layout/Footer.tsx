@@ -1,6 +1,6 @@
-import React from 'react';
 import { Container, Group, Text, Stack, Anchor, Box, SimpleGrid } from '@mantine/core';
 import { IconBrandTwitter, IconBrandLinkedin, IconBrandGithub, IconMail, IconMapPin, IconPhone } from '@tabler/icons-react';
+import React from 'react';
 
 export const Footer: React.FC = () => {
     return (

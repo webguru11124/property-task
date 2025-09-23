@@ -1,6 +1,4 @@
-// Form-related type definitions
-
-export interface FormField<T = any> {
+export interface FormField<T = unknown> {
   value: T;
   error?: string;
   touched?: boolean;
@@ -14,7 +12,7 @@ export interface ValidationRule {
   maxLength?: number;
   min?: number;
   max?: number;
-  custom?: (value: any) => string | undefined;
+  custom?: (value: unknown) => string | undefined;
 }
 
 export interface FormErrors {

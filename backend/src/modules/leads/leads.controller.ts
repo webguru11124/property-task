@@ -5,15 +5,15 @@ import { AssignLeadDto } from './dto/assign-lead.dto';
 
 @Controller('api/v1/leads')
 export class LeadsController {
-    constructor(private readonly leadsService: LeadsService) { }
+  constructor(private readonly leadsService: LeadsService) {}
 
-    @Post()
-    async create(@Body() body: CreateLeadDto) {
-        return this.leadsService.create(body);
-    }
+  @Post()
+  async create(@Body() body: CreateLeadDto) {
+    return this.leadsService.create(body);
+  }
 
-    @Patch(':leadId/assign')
-    async assign(@Param('leadId') leadId: string, @Body() body: AssignLeadDto) {
-        return this.leadsService.assignLead(leadId, body.brokerId);
-    }
+  @Patch(':leadId/assign')
+  async assign(@Param('leadId') leadId: string, @Body() body: AssignLeadDto) {
+    return this.leadsService.assignLead(leadId, body.brokerId);
+  }
 }

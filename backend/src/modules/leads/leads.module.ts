@@ -9,8 +9,12 @@ import { LeadsController } from './leads.controller';
 import { BrokersModule } from '../brokers/brokers.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Lead, City, BrokerOffice]), NotificationsModule, BrokersModule],
-    controllers: [LeadsController],
-    providers: [LeadsService],
+  imports: [
+    TypeOrmModule.forFeature([Lead, City, BrokerOffice]),
+    NotificationsModule,
+    BrokersModule,
+  ],
+  controllers: [LeadsController],
+  providers: [LeadsService],
 })
-export class LeadsModule { }
+export class LeadsModule {}

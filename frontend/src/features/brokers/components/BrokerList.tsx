@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Container,
     Title,
@@ -13,6 +12,8 @@ import {
     Transition,
 } from '@mantine/core';
 import { IconInfoCircle, IconMapPin } from '@tabler/icons-react';
+import React from 'react';
+
 import { BrokerCard } from './BrokerCard';
 import type { BrokerListProps } from '../types/broker.types';
 

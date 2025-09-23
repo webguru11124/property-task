@@ -6,11 +6,9 @@ import { BrokersService } from './brokers.service';
 import { BrokersController } from './brokers.controller';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([BrokerOffice, City])],
-    controllers: [BrokersController],
-    providers: [BrokersService],
-    exports: [BrokersService],
+  imports: [TypeOrmModule.forFeature([BrokerOffice, City])],
+  controllers: [BrokersController],
+  providers: [BrokersService],
+  exports: [BrokersService],
 })
-export class BrokersModule { }
-
-
+export class BrokersModule {}

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Card,
     Group,
@@ -22,6 +21,7 @@ import {
     IconUserCheck,
     IconSparkles,
 } from '@tabler/icons-react';
+import React from 'react';
 
 import type { Broker } from '../types/broker.types';
 interface BrokerCardProps {

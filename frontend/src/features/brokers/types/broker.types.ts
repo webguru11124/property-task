@@ -3,8 +3,8 @@ export type BrokerMatchType = 'local' | 'nearby' | 'recommended' | 'all';
 export interface Broker {
     id: string;
     name: string;
-    address: string;
-    city: string | { name: string };
+    address?: string;
+    city?: string | { name: string };
     phone?: string;
     email?: string;
     website?: string;

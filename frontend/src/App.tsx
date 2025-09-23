@@ -1,6 +1,6 @@
-import { AppProviders } from './providers/AppProviders'
-import HomePage from './pages/HomePage'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import HomePage from './pages/HomePage'
+import { AppProviders } from './providers/AppProviders'
 
 function App() {
   return (

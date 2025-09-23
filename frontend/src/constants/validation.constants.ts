@@ -1,21 +1,10 @@
-// Validation-related constants
-
 export const VALIDATION_PATTERNS = {
-  // Norwegian phone number patterns
   NORWEGIAN_PHONE: /^(\+47)?[2-9]\d{7}$/,
   INTERNATIONAL_PHONE: /^\+?[1-9]\d{1,14}$/,
-
-  // Email pattern
   EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-
-  // Norwegian postal code
   NORWEGIAN_POSTAL_CODE: /^\d{4}$/,
-
-  // Names (including Norwegian characters)
   NAME: /^[a-zA-ZæøåÆØÅ\s\-']{2,50}$/,
-
-  // URL pattern
-  URL: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,
+  URL: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&/=]*)$/,
 } as const;
 
 export const VALIDATION_MESSAGES = {

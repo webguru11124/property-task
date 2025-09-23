@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { leadFormSchema } from './leadForm.schema';
 
 describe('leadFormSchema', () => {
@@ -15,12 +16,18 @@ describe('leadFormSchema', () => {
     });
 
     it('rejects invalid phone and email', () => {
-        const input = {
+        const input: {
+            fullName: string;
+            phone: string;
+            email: string;
+            city: { id: string; name: string };
+            comment?: string;
+        } = {
             fullName: 'Ola Nordmann',
             phone: '123',
             email: 'not-an-email',
             city: { id: '550e8400-e29b-41d4-a716-446655440001', name: 'Oslo' },
-        } as any;
+        };
         const result = leadFormSchema.safeParse(input);
         expect(result.success).toBe(false);
     });

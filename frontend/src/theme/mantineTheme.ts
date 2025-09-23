@@ -1,5 +1,5 @@
 import { createTheme } from '@mantine/core';
-import type { MantineColorsTuple } from '@mantine/core';
+import type { MantineColorsTuple, MantineTheme } from '@mantine/core';
 
 const brandColor: MantineColorsTuple = [
   '#f4f0ff',
@@ -67,7 +67,7 @@ export const mantineTheme = createTheme({
         size: 'md',
         variant: 'filled',
       },
-      styles: (theme) => ({
+      styles: (theme: MantineTheme) => ({
         root: {
           fontWeight: 500,
           transition: 'all 0.2s ease',
@@ -83,7 +83,7 @@ export const mantineTheme = createTheme({
       defaultProps: {
         size: 'md',
       },
-      styles: (theme) => ({
+      styles: (theme: MantineTheme) => ({
         input: {
           '&:focus': {
             borderColor: theme.colors.brand[5],
@@ -113,7 +113,7 @@ export const mantineTheme = createTheme({
         radius: 'lg',
         withBorder: false,
       },
-      styles: (theme) => ({
+      styles: (theme: MantineTheme) => ({
         root: {
           transition: 'all 0.3s ease',
           '&:hover': {
