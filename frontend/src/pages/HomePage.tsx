@@ -1,4 +1,5 @@
-import { Box, Container, Title, Text, Group, ThemeIcon, SimpleGrid, Card } from '@mantine/core';
+import { Box, Container, Title, Text, Group, ThemeIcon, SimpleGrid, Card, Badge, Button, Stack } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { IconSearch, IconUserCheck, IconPhone } from '@tabler/icons-react';
 import React from 'react';
 
@@ -27,11 +28,18 @@ import { mapLeadResponseToUI } from '../utils';
 
  export default function HomePage() {
      const [brokerResults, setBrokerResults] = React.useState<BrokerResult>(null);
+     const [assignedBrokerId, setAssignedBrokerId] = React.useState<string | null>(null);
      const assignLead = useAssignLead();
 
      const handleAssignBroker = async (leadId: string, brokerId: string) => {
          try {
              await assignLead.mutateAsync({ leadId, brokerId });
+            setAssignedBrokerId(brokerId);
+            notifications.show({
+                title: 'Broker assigned',
+                message: 'We\'ve shared your details with the selected broker. They\'ll contact you shortly.',
+                color: 'green',
+            });
          } catch (error) {
              console.error('Failed to assign broker:', error);
          }
@@ -133,27 +141,62 @@ import { mapLeadResponseToUI } from '../utils';
                  </SimpleGrid>
              </Container>
 
-             <LeadCaptureForm onSuccess={(data) => setBrokerResults(mapLeadResponseToUI(data))} />
+            <LeadCaptureForm onSuccess={(data) => {
+                setBrokerResults(mapLeadResponseToUI(data));
+                setAssignedBrokerId(null);
+            }} />
 
             {brokerResults && (
-               <BrokerList
-                    brokers={(brokerResults.recommendedBrokers || []).map((b) => ({
-                        id: b.id,
-                        name: b.name,
-                        address: b.address,
-                        city: b.city ?? '',
-                        phone: b.phone,
-                        email: b.email,
-                        website: b.website,
-                        distance: b.distance,
-                    })) as Broker[]}
-                     matchType={brokerResults.brokerMatchType}
-                     message={brokerResults.message}
-                     leadId={brokerResults.id}
-                     onAssignBroker={handleAssignBroker}
-                    assigningBrokerId={assignLead.isPending ? assignLead.variables?.brokerId : undefined}
-                 />
-             )}
+                assignedBrokerId ? (
+                    (() => {
+                        const selected = brokerResults.recommendedBrokers.find(b => b.id === assignedBrokerId);
+                        if (!selected) return null;
+                        return (
+                            <Container size="lg" className="py-8">
+                                <Card shadow="md" radius="lg" withBorder>
+                                    <Stack gap="sm">
+                                        <Title order={3}>You are connected with {selected.name}</Title>
+                                        <Group gap="xs">
+                                            <Badge variant="light" color="green">Assigned</Badge>
+                                            {selected.city && <Badge variant="light" color="gray">{selected.city}</Badge>}
+                                        </Group>
+                                        {selected.address && (
+                                            <Text size="sm" c="dimmed">{selected.address}</Text>
+                                        )}
+                                        <Group>
+                                            {selected.phone && (
+                                                <Button component="a" href={`tel:${selected.phone}`} variant="light" size="sm">Call</Button>
+                                            )}
+                                            {selected.email && (
+                                                <Button component="a" href={`mailto:${selected.email}`} variant="light" size="sm">Email</Button>
+                                            )}
+                                        </Group>
+                                        <Button variant="outline" size="sm" onClick={() => setAssignedBrokerId(null)}>Choose a different broker</Button>
+                                    </Stack>
+                                </Card>
+                            </Container>
+                        );
+                    })()
+                ) : (
+                    <BrokerList
+                        brokers={(brokerResults.recommendedBrokers || []).map((b) => ({
+                            id: b.id,
+                            name: b.name,
+                            address: b.address,
+                            city: b.city ?? '',
+                            phone: b.phone,
+                            email: b.email,
+                            website: b.website,
+                            distance: b.distance,
+                        })) as Broker[]}
+                        matchType={brokerResults.brokerMatchType}
+                        message={brokerResults.message}
+                        leadId={brokerResults.id}
+                        onAssignBroker={handleAssignBroker}
+                        assigningBrokerId={assignLead.isPending ? assignLead.variables?.brokerId : undefined}
+                    />
+                )
+            )}
 
              <Container size="lg" className="py-16">
                  <Box className="text-center mb-12">
