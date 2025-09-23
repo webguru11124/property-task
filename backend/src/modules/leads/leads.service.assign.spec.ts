@@ -23,19 +23,16 @@ describe('LeadsService.assignLead', () => {
         .fn()
         .mockImplementation((l: any) => Promise.resolve({ ...lead, ...l })),
     });
-    const cityRepo = repo<City>({} as any);
+    const cityRepo = repo<City>({} as Partial<Repository<City>>);
     const brokerRepo = repo<BrokerOffice>({
       findOne: jest.fn().mockResolvedValue(broker),
     });
-    const brokersService = new BrokersService(
-      brokerRepo,
-      cityRepo,
-    );
+    const brokersService = new BrokersService(brokerRepo, cityRepo);
     jest
       .spyOn(brokersService, 'getRecommendedBrokers')
       .mockResolvedValue({ brokers: [], type: 'none', message: '' });
     const notificationService = new NotificationService();
-    jest
+    const emailSpy = jest
       .spyOn(notificationService, 'notifyBrokerByEmail')
       .mockReturnValue({ delivered: true });
 
@@ -57,11 +54,7 @@ describe('LeadsService.assignLead', () => {
     expect(brokerRepo.findOne).toHaveBeenCalledWith({
       where: { id: 'broker-1' },
     });
-    const { notifyBrokerByEmail } = notificationService;
-    expect(notifyBrokerByEmail).toHaveBeenCalledWith(
-      'b@example.com',
-      expect.any(Object),
-    );
+    expect(emailSpy).toHaveBeenCalledWith('b@example.com', expect.any(Object));
     expect(res.success).toBe(true);
     expect(res.data.assignedBrokerId).toBe('broker-1');
     expect(res.data.notificationSent).toBe(true);
