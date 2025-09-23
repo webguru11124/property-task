@@ -1,11 +1,13 @@
-import './App.css'
 import { AppProviders } from './providers/AppProviders'
-import Home from './pages/Home'
+import HomePage from './pages/HomePage'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 function App() {
   return (
     <AppProviders>
-      <Home />
+      <ErrorBoundary>
+        <HomePage />
+      </ErrorBoundary>
     </AppProviders>
   )
 }

@@ -19,4 +19,10 @@ docker compose logs -f backend
 cd frontend && npm run dev
 ```
 
+Frontend environment:
+```
+# frontend/.env
+VITE_API_BASE_URL=http://localhost:3000
+```
+
 Docs are under `docs/`.

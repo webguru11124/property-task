@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+/* Tailwind v4 CSS Configuration - Aligned with Mantine Theme */
+@theme {
+  /* Mantine-aligned Color System */
+  /* Brand 0..9 */
+  --color-brand-0: 244 240 255;
+  --color-brand-1: 230 222 255;
+  --color-brand-2: 203 185 255;
+  --color-brand-3: 174 145 255;
+  --color-brand-4: 151 111 255;
+  --color-brand-5: 139 92 246;
+  --color-brand-6: 130 83 244;
+  --color-brand-7: 113 69 217;
+  --color-brand-8: 102 61 194;
+  --color-brand-9: 90 52 171;
+
+  /* Primary 0..9 */
+  --color-primary-0: 240 249 255;
+  --color-primary-1: 224 242 254;
+  --color-primary-2: 186 230 253;
+  --color-primary-3: 125 211 252;
+  --color-primary-4: 56 189 248;
+  --color-primary-5: 14 165 233;
+  --color-primary-6: 2 132 199;
+  --color-primary-7: 3 105 161;
+  --color-primary-8: 7 89 133;
+  --color-primary-9: 12 74 110;
+
+  /* Gray 0..10 */
+  --color-gray-0: 249 250 251;
+  --color-gray-1: 243 244 246;
+  --color-gray-2: 229 231 235;
+  --color-gray-3: 209 213 219;
+  --color-gray-4: 156 163 175;
+  --color-gray-5: 107 114 128;
+  --color-gray-6: 75 85 99;
+  --color-gray-7: 55 65 81;
+  --color-gray-8: 31 41 55;
+  --color-gray-9: 17 24 39;
+  --color-gray-10: 3 7 18;
+
+  /* Green 0..9 */
+  --color-green-0: 240 253 244;
+  --color-green-1: 220 252 231;
+  --color-green-2: 187 247 208;
+  --color-green-3: 134 239 172;
+  --color-green-4: 74 222 128;
+  --color-green-5: 34 197 94;
+  --color-green-6: 22 163 74;
+  --color-green-7: 21 128 61;
+  --color-green-8: 22 101 52;
+  --color-green-9: 20 83 45;
+
+  /* Red 0..9 */
+  --color-red-0: 254 242 242;
+  --color-red-1: 254 226 226;
+  --color-red-2: 254 202 202;
+  --color-red-3: 252 165 165;
+  --color-red-4: 248 113 113;
+  --color-red-5: 239 68 68;
+  --color-red-6: 220 38 38;
+  --color-red-7: 185 28 28;
+  --color-red-8: 153 27 27;
+  --color-red-9: 127 29 29;
+
+  /* Blue 0..9 */
+  --color-blue-0: 239 246 255;
+  --color-blue-1: 219 234 254;
+  --color-blue-2: 191 219 254;
+  --color-blue-3: 147 197 253;
+  --color-blue-4: 96 165 250;
+  --color-blue-5: 59 130 246;
+  --color-blue-6: 37 99 235;
+  --color-blue-7: 29 78 216;
+  --color-blue-8: 30 64 175;
+  --color-blue-9: 30 58 138;
+
+  /* Yellow 0..9 */
+  --color-yellow-0: 254 252 232;
+  --color-yellow-1: 254 249 195;
+  --color-yellow-2: 254 240 138;
+  --color-yellow-3: 253 224 71;
+  --color-yellow-4: 250 204 21;
+  --color-yellow-5: 245 158 11;
+  --color-yellow-6: 217 119 6;
+  --color-yellow-7: 180 83 9;
+  --color-yellow-8: 146 64 14;
+  --color-yellow-9: 120 53 15;
+
+  /* Font System */
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Mantine-aligned Font Sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Mantine-aligned Spacing */
+  --spacing-xs: 0.625rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.25rem;
+  --spacing-xl: 2rem;
+
+  /* Mantine-aligned Border Radius */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Mantine-aligned Shadows */
+  --shadow-xs: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05), 0 0.625rem 0.9375rem -0.3125rem rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05), 0 1.25rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05), 0 1.75rem 1.4375rem -0.4375rem rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05), 0 2.25rem 1.75rem -0.4375rem rgba(0, 0, 0, 0.1);
+
+  /* Container Sizes (Mantine-aligned) */
+  --container-xs: 36rem;
+  --container-sm: 42rem;
+  --container-md: 48rem;
+  --container-lg: 64rem;
+  --container-xl: 80rem;
+}
+
+/* Base Layer Reset */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    color: rgb(var(--color-gray-9));
+    background: linear-gradient(to bottom right, rgb(var(--color-gray-0)), rgb(var(--color-brand-0)));
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-display);
+    font-weight: 700;
+  }
+}
+
+/* Accessible focus outlines */
+@layer base {
+
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgb(var(--color-brand-5));
+    outline-offset: 2px;
+  }
+}
+
+/* Utility Classes for Layouts */
+@layer utilities {
+
+  /* Container utilities for layout */
+  .container-xs {
+    max-width: var(--container-xs);
+  }
+
+  .container-sm {
+    max-width: var(--container-sm);
+  }
+
+  .container-md {
+    max-width: var(--container-md);
+  }
+
+  .container-lg {
+    max-width: var(--container-lg);
+  }
+
+  .container-xl {
+    max-width: var(--container-xl);
+  }
+
+  /* Spacing utilities */
+  .space-xs {
+    gap: var(--spacing-xs);
+  }
+
+  .space-sm {
+    gap: var(--spacing-sm);
+  }
+
+  .space-md {
+    gap: var(--spacing-md);
+  }
+
+  .space-lg {
+    gap: var(--spacing-lg);
+  }
+
+  .space-xl {
+    gap: var(--spacing-xl);
+  }
+
+  /* Glass morphism for cards */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient utilities */
+  .gradient-brand {
+    background: linear-gradient(135deg, rgb(var(--color-brand-5)), rgb(var(--color-primary-5)));
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, rgb(var(--color-brand-5)), rgb(var(--color-primary-5)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover animations */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Focus styles matching Mantine */
+  .focus-ring {
+    outline: 2px solid rgb(var(--color-brand-5));
+    outline-offset: 2px;
+  }
+
+  /* Layout Grid System */
+  .layout-grid {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  .layout-flex {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  /* Responsive Container */
+  .responsive-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  @media (min-width: 640px) {
+    .responsive-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .responsive-container {
+      max-width: 768px;
+      padding-left: var(--spacing-lg);
+      padding-right: var(--spacing-lg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .responsive-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .responsive-container {
+      max-width: 1280px;
+      padding-left: var(--spacing-xl);
+      padding-right: var(--spacing-xl);
+    }
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: calc(var(--spacing-xl) * 2);
+      padding-bottom: calc(var(--spacing-xl) * 2);
+    }
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* Custom Scrollbar matching Mantine */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-gray-1));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-gray-4));
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-gray-5));
+}
+
+/* Selection matching brand colors */
+::selection {
+  background: rgb(var(--color-brand-2));
+  color: rgb(var(--color-brand-9));
+}

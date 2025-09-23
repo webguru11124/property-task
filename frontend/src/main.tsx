@@ -1,17 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import '@mantine/core/styles.css'
+import '@mantine/notifications/styles.css'
+import '@mantine/dates/styles.css'
+import './styles/app.css'
 import App from './App.tsx'
-import Home from './pages/Home'
-
-const router = createBrowserRouter([
-  { path: '/', element: <App /> },
-  { path: '/home', element: <Home /> },
-])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )

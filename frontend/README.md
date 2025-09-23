@@ -1,69 +1,56 @@
-# React + TypeScript + Vite
+# Plyo Property Leads – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Install deps:
+```
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Env (create `frontend/.env`):
 ```
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+3. Run dev server:
+```
+npm run dev
+```
+
+## Scripts
+- `npm run dev` – start Vite dev server
+- `npm run build` – typecheck + build
+- `npm run preview` – preview production build
+- `npm run lint` – run ESLint
+
+## Tech
+- React 19 + TypeScript
+- Mantine UI + Tailwind (layout)
+- React Hook Form + Zod
+- React Query (+ Devtools)
+- Axios client with error normalization
+
+## Structure
+```
+src/
+  components/
+    common/PhoneInput.tsx
+    layout/{Header,Footer,Layout}.tsx
+  features/
+    leads/
+      components/LeadCaptureForm.tsx
+      schemas/leadForm.schema.ts
+    brokers/
+      components/{BrokerCard,BrokerList}.tsx
+      types/broker.types.ts
+  hooks/
+  lib/api/client.ts
+  pages/HomePage.tsx
+  providers/AppProviders.tsx
+  theme/mantineTheme.ts
+  utils/{index,validation.utils}.ts
+```
+
+## Notes
+- Tailwind tokens align to Mantine theme in `src/styles/app.css`.
+- API base URL is read from `VITE_API_BASE_URL`.
