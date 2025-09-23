@@ -23,7 +23,8 @@
     "migration:run": "npm run build && typeorm-ts-node-commonjs migration:run -d ./ormconfig.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./ormconfig.ts",
     "migration:show": "typeorm-ts-node-commonjs migration:show -d ./ormconfig.ts",
-    "seed:run": "ts-node src/database/seeds/run-seed.ts"
+    "seed:run": "ts-node src/database/seeds/run-seed.ts",
+    "cities:import": "NODE_OPTIONS=--experimental-fetch ts-node src/database/scripts/import-cities-from-api.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

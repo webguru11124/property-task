@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { Lead } from './entities/lead.entity';
 import { City } from '../cities/entities/city.entity';
 import { BrokersService } from '../brokers/brokers.service';
+import { NotificationService } from '../notifications/notification.service';
+import { BrokerOffice } from '../brokers/entities/broker-office.entity';
 
 interface CreateLeadInput {
     fullName: string;
@@ -20,7 +22,10 @@ export class LeadsService {
         private readonly leadRepository: Repository<Lead>,
         @InjectRepository(City)
         private readonly cityRepository: Repository<City>,
+        @InjectRepository(BrokerOffice)
+        private readonly brokerRepository: Repository<BrokerOffice>,
         private readonly brokersService: BrokersService,
+        private readonly notificationService: NotificationService,
     ) { }
 
     async create(input: CreateLeadInput) {
@@ -51,5 +56,21 @@ export class LeadsService {
                 message: match.message,
             },
         };
+    }
+
+    async assignLead(leadId: string, brokerId: string) {
+        const lead = await this.leadRepository.findOne({ where: { id: leadId } });
+        if (!lead) throw new Error('Lead not found');
+        lead.assigned_broker_id = brokerId;
+        const saved = await this.leadRepository.save(lead);
+        // Fire mock notification
+        const broker = await this.brokerRepository.findOne({ where: { id: brokerId } });
+        if (broker?.email) {
+            await this.notificationService.notifyBrokerByEmail(broker.email, {
+                leadId: saved.id,
+                message: `New lead assigned: ${saved.full_name} (${saved.email})`
+            });
+        }
+        return { success: true, data: { leadId: saved.id, assignedBrokerId: brokerId, assignedAt: new Date().toISOString(), notificationSent: !!broker?.email } };
     }
 }
